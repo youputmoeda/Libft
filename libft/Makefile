@@ -4,12 +4,7 @@ ft_memcmp ft_strlen ft_strlcpy ft_strlcat ft_strchr ft_strrchr\
 ft_strnstr ft_strncmp ft_atoi ft_isalpha ft_isdigit ft_isalnum\
 ft_isascii ft_isprint ft_toupper ft_tolower ft_calloc ft_strdup\
 ft_substr ft_strjoin ft_strtrim ft_itoa ft_strmapi ft_putchar_fd\
-ft_putstr_fd ft_putendl_fd ft_putnbr_fd ft_split
-#BONUS = ft_lstadd_back ft_lstadd_front ft_lstclear ft_lstdelone\
-ft_lstiter ft_lstlast ft_lstmap ft_lstnew ft_lstsize ft_pow_bonus\
-ft_strjoinchr_bonus ft_itoa_longlong_bonus\
-ft_itoa_unsigned_longlong_bonus ft_split_chars_bonus ft_strcmp_bonus\
-ft_free_array_bonus
+ft_putstr_fd ft_putendl_fd ft_putnbr_fd ft_split ft_striteri
 CC =gcc
 RM =rm -f
 CFLAGS = -Wall -Wextra -Werror -I.
@@ -24,7 +19,5 @@ clean:
 fclean: clean
 		$(RM)	$(NAME)
 re:	fclean	$(NAME)
-bonus:	$(SRC:=.o)	$(BONUS:=.o)
-		ar rc $(NAME) $(SRC:=.o)	$(BONUS:=.o)
 
 .PHONY:		all clean fclean re bonus rebonus
