@@ -10,3 +10,5 @@ The aim of this project is to code a C library regrouping usual fuctions that yo
 
 
 It is forbidden to use global variables. If subfuctions are needed, they must be "static". The library must be compiled with ar command (libtool is forbidden).
+
+![125](file:///Users/joteixei/Desktop/Screen%20Shot%202021-11-12%20at%204.04.53%20PM.png)
