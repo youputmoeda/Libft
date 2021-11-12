@@ -5,72 +5,57 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: joteixei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/18 17:49:27 by joteixei          #+#    #+#             */
-/*   Updated: 2021/10/19 17:14:13 by joteixei         ###   ########.fr       */
+/*   Created: 2021/10/19 18:15:55 by joteixei          #+#    #+#             */
+/*   Updated: 2021/10/19 18:16:12 by joteixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_delimiter(char c, char delimator)
+static int	strcounter(const char *str, char c)
 {
-	if (c == delimator)
-		return (1);
-	return (0);
-}
+	int	counter;
+	int	i;
 
-static size_t	sub_size(const char *s, char c)
-{
-	unsigned int	len;
-
-	len = 0;
-	while (*s)
+	i = 0;
+	counter = 0;
+	if (!str)
+		return (0);
+	while (str[i] != '\0')
 	{
-		if (ft_delimiter(*s, c))
-			s++;
-		else
-		{
-			++len;
-			while (*s && !ft_delimiter(*s, c))
-				++s;
-		}
+		while (str[i] != c && str[i] != '\0')
+			i++;
+		while (str[i] == c && str[i] != '\0')
+			i++;
+		counter++;
 	}
-	return (len);
+	return (counter);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	size_t	i;
-	size_t	j;
-	size_t	k;
-	char	**sub;
-	size_t	word_count;
+	char	**new;
+	int		i;
+	int		j;
+	int		start;
 
+	new = malloc(sizeof(char *) * (strcounter(s, c) + 1));
+	if (!s || !new)
+		return (0);
 	i = 0;
 	j = 0;
-	word_count = 0;
-	sub = (char **)malloc(sizeof(char *) * sub_size(s, c) + 1);
-	if (!sub || !s)
-		return (0);
-	while (s[i] && j < sub_size(s, c))
+	while (s[i] != '\0')
 	{
-		while (s[i] && ft_delimiter(s[i], c))
+		while (s[i] == c && s[i] != '\0')
 			i++;
-		while (s[i] && !ft_delimiter(s[i], c))
-		{
-			word_count++;
+		if (!s[i])
+			break ;
+		start = i;
+		while (s[i] != c && s[i] != '\0')
 			i++;
-		}
-		sub[j] = (char *)malloc(sizeof(char) * word_count + 1);
-		if (!sub[j])
-			return (0);
-		k = 0;
-		while (word_count)
-		{
-			sub[j][k++] = s[i - word_count--];
-		}
-		sub[j++][k] = '\0';
+		new[j] = ft_substr(s, start, i - start);
+		j++;
 	}
-	sub[j] = '\0';
-	return (sub);
+	new[j] = NULL;
+	return (new);
 }

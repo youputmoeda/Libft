@@ -14,14 +14,16 @@
 
 char	*ft_strchr(const char *str, int c)
 {
-	char	tmp;
+	int	index;
 
-	tmp = (unsigned char)c;
-	while (*str != tmp)
+	if (str)
 	{
-		if (*str == 0)
-			return (0);
-		str++;
+		index = 0;
+		if (str[index] == (char)c)
+			return ((char *)str);
+		while (str[index++])
+			if (str[index] == (char)c)
+				return ((char *)str + index);
 	}
-	return ((char *)str);
+	return (NULL);
 }
