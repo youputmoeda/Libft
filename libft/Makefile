@@ -7,6 +7,7 @@ ft_substr ft_strjoin ft_strtrim ft_split ft_itoa ft_strmapi ft_striteri ft_ispri
 ft_putchar_fd ft_putstr_fd ft_putendl_fd ft_putnbr_fd
 BONUS = ft_lstadd_back ft_lstadd_front ft_lstclear ft_lstdelone\
 ft_lstiter ft_lstlast ft_lstmap ft_lstnew ft_lstsize
+PTF = ft_printf/ft_printf ft_printf/transformers1 ft_printf/transformers2
 CC =gcc
 RM =rm -f
 CFLAGS = -Wall -Wextra -Werror -I.
@@ -14,13 +15,15 @@ CFLAGS = -Wall -Wextra -Werror -I.
 
 all:$(NAME)
 
-$(NAME): $(SRC:=.o)
+$(NAME): $(SRC:=.o) $(PTF:=.o) $(BONUS:=.o)
 			ar rc $(NAME) $(SRC:=.o)
 clean:
-	$(RM)	$(SRC:=.o) $(BONUS:=.o)
+	$(RM)	$(SRC:=.o) $(BONUS:=.o) $(PTF:=.o)
 fclean: clean
 		$(RM)	$(NAME)
 re:	fclean	$(NAME)
 
 bonus:	$(SRC:=.o)	$(BONUS:=.o)
 		ar rc $(NAME) $(SRC:=.o)	$(BONUS:=.o)
+
+.PHONY: all fclean clean re
